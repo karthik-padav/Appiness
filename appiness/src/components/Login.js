@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 
 const formValid = ({formErrors, ...rest}) => {
     let valid = true;
@@ -34,15 +35,15 @@ class Login extends Component {
 
     render() {
         return(
-            <div className="wrapper">
-              <div className="form-wrapper">
+          <div className="row">
+            <div className="col-sm-6 offset-sm-3">
                 <h1>Login</h1>
                 <form onSubmit={this.handleSubmit} noValidate>
-                  <div className="email">
+                  <div className="form-group">
                     <label htmlFor="email">Email</label>
                     <input
                       type="email"
-                      className={this.state.formErrors.email.length>0?"error":null}
+                      className={this.state.formErrors.email.length>0?"error form-control":"form-control"}
                       placeholder="Email"
                       name="email"
                       onChange={this.handleChange}
@@ -51,11 +52,11 @@ class Login extends Component {
                         <span className="errorMessage">{this.state.formErrors.email}</span>
                       )}
                   </div>
-                  <div className="password">
+                  <div className="form-group">
                     <label htmlFor="password">Password</label>
                     <input
                       type="password"
-                      className={this.state.formErrors.password.length>0?"error":null}
+                      className={this.state.formErrors.password.length>0?"error form-control":"form-control"}
                       placeholder="Password"
                       name="password"
                       onChange={this.handleChange}
@@ -65,7 +66,7 @@ class Login extends Component {
                       )}
                   </div>
                   <div className="login_w">
-                    <button type="submit">Login</button>
+                    <button type="submit" className="btn btn-primary">Login</button>
                   </div>
                   <small>Note: Email: hruday@gmail.com Password: hruday123</small>
                 </form>
@@ -99,11 +100,9 @@ class Login extends Component {
         
         this.props.history.push("employeelist");
         if(formValid(this.state)){
-          console.log(this.state);
           if(this.state.email === 'hruday@gmail.com' && this.state.password === 'hruday123'){
-              console.log('success');
+              localStorage.setItem('isLoggedIn', true)
               this.props.history.push("employeelist");
-
           }
         } else {
           console.log('Form invalid')
@@ -111,4 +110,4 @@ class Login extends Component {
       }
 }
 
-export default Login
+export default withRouter(Login)
