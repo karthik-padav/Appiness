@@ -10,7 +10,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1"
   },
-  "homepage": "https://github.com/karthik-padav/Appiness/tree/master/appiness/build",
+  "homepage": "https://github.com/karthik-padav/Appiness/tree/master/appiness/build/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
